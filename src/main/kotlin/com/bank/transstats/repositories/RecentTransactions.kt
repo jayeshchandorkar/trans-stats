@@ -20,4 +20,8 @@ class RecentTransactions {
             transactionSecondSummary: TransactionSecondSummary){
         store.put(transactionSecondKey, transactionSecondSummary)
     }
+
+    fun remove(transactionSecondKey: TransactionSecondKey) {
+        store.remove(transactionSecondKey)
+    }
 }
