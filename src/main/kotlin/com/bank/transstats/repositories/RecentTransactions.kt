@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap
 @Repository
 class RecentTransactions {
 
-    /** Initialized with length 61 to ensures no automatic expansion occurs */
+    /** Initialized with length 61 to ensure no automatic expansion occurs */
     private val store = ConcurrentHashMap<TransactionSecondKey, TransactionSecondSummary>(61, 1f)
 
     fun get(transactionSecondKey: TransactionSecondKey): TransactionSecondSummary?{

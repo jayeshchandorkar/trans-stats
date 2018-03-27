@@ -13,7 +13,8 @@ class TransactionController(val transStatsService: TransStatsService){
 
     @PostMapping("/transactions")
     fun saveTransaction(@RequestBody transactionRequest: TransactionRequest): ResponseEntity<String> {
-        if(transactionRequest.timestamp <= (System.currentTimeMillis() - 60000)){
+        if(transactionRequest.timestamp <= (System.currentTimeMillis() - 60000)
+                || transactionRequest.timestamp > System.currentTimeMillis()){
             return ResponseEntity<String>("", null, HttpStatus.NO_CONTENT)
         }
         transStatsService.saveTransaction(transactionRequest)

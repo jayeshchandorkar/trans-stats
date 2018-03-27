@@ -36,6 +36,22 @@ class TransactionControllerTest: BaseTestController<TransactionController>(){
     }
 
     @Test
+    fun save_futureTransaction_returnsNoContent(){
+        val amount = 12.3
+        val futureTimestamp = System.currentTimeMillis() + 60 * 1000
+
+        this.mockMvc.perform(post("/transactions")
+                .content(
+                        """{
+                            "amount": ${amount},
+                            "timestamp": ${futureTimestamp}
+                        }"""
+                ).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent)
+                .andExpect( content().string("") )
+    }
+
+    @Test
     fun save_validTransaction_returnsCreated(){
         val amount = 12.3
         val timestamp = System.currentTimeMillis() - 5
